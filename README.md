@@ -178,4 +178,4 @@ Este repositório é parte de um projeto educacional, mas contribuições são s
 <br />
 
 Desenvolvido por [**Nayara**](https://github.com/nayarakiyota)
-Para dúvidas, sugestões ou colaborações, entre em contato via GitHub ou abra uma issue!
+Para dúvidas, sugestões ou colaborações, entre em contato via GitHub ou abra uma issue.

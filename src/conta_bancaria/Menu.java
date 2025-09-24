@@ -3,6 +3,7 @@ package conta_bancaria;
 import java.util.Scanner;
 
 import conta_bancaria.model.Conta;
+import conta_bancaria.model.ContaCorrente;
 import conta_bancaria.util.Cores;
 
 public class Menu {
@@ -18,7 +19,7 @@ public class Menu {
 		Conta c1 = new Conta(1, 123, 1, "Cintia Dourado", 500000.00f);
 		
 		Conta c2 = new Conta(2, 123, 2, "Priscila Lins", 500000.00f);
-		
+								
 		System.out.println("O Saldo da conta é: " + c1.getSaldo()); 
 		
 		c1.setSaldo(600000.00f);
@@ -38,26 +39,46 @@ public class Menu {
 		c1.depositar(5000);
 		System.out.println("O Saldo da conta é: " + c1.getSaldo());
 		
-		while (true) {
+		// Instanciar objetos da classe ContaCorrente
 		
-		System.out.println(Cores.TEXT_WHITE_BOLD_BRIGHT + Cores.ANSI_PURPLE_BACKGROUND + "***********************************************");
-		System.out.println("                                               ");
-		System.out.println(" 	      	NABANK       		               ");
-		System.out.println("_______________________________________________");
-		System.out.println("                                               ");
-		System.out.println(" 	 1 - Criar Conta                  		   ");
-		System.out.println(" 	 2 - Listar todas as Contas       	       ");
-		System.out.println(" 	 3 - Buscar Conta por Numero    		   ");
-		System.out.println(" 	 4 - Atualizar Dados da Conta              ");
-		System.out.println(" 	 5 - Apagar Conta 			               ");
-		System.out.println(" 	 6 - Sacar 					               ");
-		System.out.println(" 	 7 - Depositar				               ");
-		System.out.println(" 	 8 - Transferir valores entre Contas       ");
-		System.out.println(" 	 0 - Sair 					               ");
-		System.out.println("                                               ");
-		System.out.println("_______________________________________________");
-		System.out.println("  Entre com a opção desejada:                  ");
-		System.out.println("***********************************************" + Cores.TEXT_RESET);
+		ContaCorrente cc1 = new ContaCorrente(3, 456, 1, "Thuany Silva", 1000000.00f, 100000.00f);
+		
+		cc1.visualizar();
+		
+		// Sacar Conta Corrente
+		System.out.println(cc1.sacar(2000000.00f));
+		cc1.visualizar();
+		
+		System.out.println(cc1.sacar(2000.00f));
+		cc1.visualizar();
+		
+		// Depositar Conta Corrente
+		cc1.depositar(5000.00f);
+		cc1.visualizar();
+		
+		while (true) {
+					
+		System.out.println(Cores.TEXT_WHITE_BOLD_BRIGHT + Cores.ANSI_PURPLE_BACKGROUND
+			    + "************************************************\n"
+			    + "*                                              *\n"
+			    + "*                 NABANK                       *\n"
+			    + "*______________________________________________*\n"
+			    + "*                                              *\n"
+			    + "*   1 - Criar Conta                            *\n"
+			    + "*   2 - Listar todas as Contas                 *\n"
+			    + "*   3 - Buscar Conta por Numero                *\n"
+			    + "*   4 - Atualizar Dados da Conta               *\n"
+			    + "*   5 - Apagar Conta                           *\n"
+			    + "*   6 - Sacar                                  *\n"
+			    + "*   7 - Depositar                              *\n"
+			    + "*   8 - Transferir valores entre Contas        *\n"
+			    + "*   0 - Sair                                   *\n"
+			    + "*                                              *\n"
+			    + "*______________________________________________*\n"
+			    + "*  Entre com a opção desejada:                 *\n"
+			    + "************************************************"
+			    + Cores.ANSI_RESET);
+
 		
 		opcao = leia.nextInt();
 		

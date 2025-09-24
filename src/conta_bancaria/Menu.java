@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 import conta_bancaria.model.Conta;
 import conta_bancaria.model.ContaCorrente;
+import conta_bancaria.model.ContaPoupanca;
 import conta_bancaria.util.Cores;
 
 public class Menu {
@@ -55,6 +56,12 @@ public class Menu {
 		// Depositar Conta Corrente
 		cc1.depositar(5000.00f);
 		cc1.visualizar();
+		
+		// Instanciar objetos da classe ContaPoupança
+		ContaPoupanca cp1 = new ContaPoupanca(4, 456, 2, "Nayara Kiyota", 7000000.00f, 26);
+		
+		cp1.visualizar();
+		
 		
 		while (true) {
 					

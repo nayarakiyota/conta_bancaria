@@ -16,10 +16,11 @@ public class ContaPoupanca extends Conta{
 	public void setAniversario(int aniversario) {
 		this.aniversario = aniversario;
 	}
-		
+	
+	@Override
 	public void visualizar() {
 		super.visualizar();
-		System.out.printf("A data de aniversário é: %d%n", this.aniversario);
+		System.out.printf("Aniversário da conta: %d%n", this.aniversario);
 	}
 	
 }

@@ -1,67 +1,23 @@
 package conta_bancaria;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
-import conta_bancaria.model.Conta;
+import conta_bancaria.controller.ContaController;
 import conta_bancaria.model.ContaCorrente;
 import conta_bancaria.model.ContaPoupanca;
 import conta_bancaria.util.Cores;
 
 public class Menu {
+	
+	private static final Scanner leia = new Scanner(System.in);
+	private static final ContaController contaController = new ContaController();
 
 	public static void main(String[] args) {
-		
-		Scanner leia = new Scanner(System.in);
-		
+						
 		int opcao;
 		
-		// Instanciar objetos da classe conta
-		
-		Conta c1 = new Conta(1, 123, 1, "Cintia Dourado", 500000.00f);
-		
-		Conta c2 = new Conta(2, 123, 2, "Priscila Lins", 500000.00f);
-								
-		System.out.println("O Saldo da conta é: " + c1.getSaldo()); 
-		
-		c1.setSaldo(600000.00f);
-		
-		System.out.println("O Saldo da conta é: " + c1.getSaldo());
-		
-		c1.visualizar();
-		
-		c2.visualizar();
-		
-		System.out.println(c1.sacar(1000));
-		System.out.println("O Saldo da conta é: " + c1.getSaldo()); 
-		
-		System.out.println(c2.sacar(10000000));
-		System.out.println("O Saldo da conta é: " + c2.getSaldo()); 
-		
-		c1.depositar(5000);
-		System.out.println("O Saldo da conta é: " + c1.getSaldo());
-		
-		// Instanciar objetos da classe ContaCorrente
-		
-		ContaCorrente cc1 = new ContaCorrente(3, 456, 1, "Thuany Silva", 1000000.00f, 100000.00f);
-		
-		cc1.visualizar();
-		
-		// Sacar Conta Corrente
-		System.out.println(cc1.sacar(2000000.00f));
-		cc1.visualizar();
-		
-		System.out.println(cc1.sacar(2000.00f));
-		cc1.visualizar();
-		
-		// Depositar Conta Corrente
-		cc1.depositar(5000.00f);
-		cc1.visualizar();
-		
-		// Instanciar objetos da classe ContaPoupança
-		ContaPoupanca cp1 = new ContaPoupanca(4, 456, 2, "Nayara Kiyota", 7000000.00f, 26);
-		
-		cp1.visualizar();
-		
+		criarContasTeste();
 		
 		while (true) {
 					
@@ -86,8 +42,14 @@ public class Menu {
 			    + "************************************************"
 			    + Cores.ANSI_RESET);
 
-		
-		opcao = leia.nextInt();
+		try {
+			opcao = leia.nextInt();
+			leia.nextLine();
+		}catch(InputMismatchException e){
+			opcao = -1;
+			System.out.println("\nDigite um número inteiro entre 0 e 8");
+			leia.nextLine();
+		}
 		
 		if (opcao == 0) {
 			System.out.println(Cores.TEXT_PURPLE_BOLD_BRIGHT + "\nNABANK - O rosinha da economia");
@@ -99,39 +61,58 @@ public class Menu {
 		switch (opcao) {
 			case 1:
 				System.out.println(Cores.TEXT_PURPLE_BOLD_BRIGHT + "Criar Conta\n\n");
+				
+				keyPress();
 				break;
 				
 			case 2:
 				System.out.println(Cores.TEXT_PURPLE_BOLD_BRIGHT + "Listar todas as Contas\n\n");
+				
+				listarContas();
+				
+				keyPress();
 				break;
 				
 			case 3:
 				System.out.println(Cores.TEXT_PURPLE_BOLD_BRIGHT +"Buscar Conta por Numero\n\n");
+				
+				keyPress();
 				break;
 				
 			case 4:
 				System.out.println(Cores.TEXT_PURPLE_BOLD_BRIGHT +"Atualizar Dados da Conta\n\n");
+				
+				keyPress();
 				break;
 				
 			case 5:
 				System.out.println(Cores.TEXT_PURPLE_BOLD_BRIGHT +"Apagar a conta\n\n");
+				
+				keyPress();
 				break;
 				
 			case 6:
 				System.out.println(Cores.TEXT_PURPLE_BOLD_BRIGHT +"Sacar\n\n");
+				
+				keyPress();
 				break;
 				
 			case 7:
 				System.out.println(Cores.TEXT_PURPLE_BOLD_BRIGHT +"Depositar\n\n");
+				
+				keyPress();
 				break;
 				
 			case 8:
 				System.out.println(Cores.TEXT_PURPLE_BOLD_BRIGHT +"Transferir valores entre Contas\n\n");
+				
+				keyPress();
 				break;
 				
 			default:
 				System.out.println(Cores.TEXT_RED_BOLD +"Opção Inválida!\n" + Cores.TEXT_RESET);
-			break;
+				keyPress();
+				break;
 				
 		}
 				
@@ -147,5 +128,19 @@ public class Menu {
 		System.out.println("**********************************************" + Cores.TEXT_RESET);
 		
 		}
-			
+	//keyPress para rodar o menu depois de apertar o enter
+	public static void keyPress() {
+		System.out.println(Cores.TEXT_RESET + "\n\nPressione enter para continuar...");
+		leia.nextLine();
 	}
+	
+	private static void criarContasTeste() {
+		contaController.cadastrar(new ContaCorrente(1, 456, 1, "Thuany Silva", 1000000.00f, 100000.00f));
+		contaController.cadastrar(new ContaPoupanca(2, 456, 2, "Marcia Condarco", 1000000.00f, 10));
+	}
+	
+	private static void listarContas() {
+		contaController.listarTodas();
+	}
+			
+}
